@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connecting TikTok · Moving Parts</title><meta name="robots" content="noindex">
+<style>body{margin:0;background:#0b1722;color:#e8eef3;font:17px/1.6 "Segoe UI",system-ui,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:16px;box-sizing:border-box}
+main{max-width:560px;text-align:center}code{display:block;background:#13283a;padding:12px;border-radius:10px;word-break:break-all;margin:12px 0;user-select:all}</style></head>
+<body><main><h1>Connecting TikTok…</h1><p id="msg">Handing the sign-in to Moving Parts Publisher on this computer.</p><code id="code" hidden></code></main>
+<script>
+const q = new URLSearchParams(location.search);
+const msg = document.getElementById('msg'), box = document.getElementById('code');
+if (q.get('error')) { msg.textContent = 'TikTok said: ' + (q.get('error_description') || q.get('error')); }
+else if (q.get('code')) {
+  location.replace('http://localhost:8765/tiktok' + location.search);
+  setTimeout(() => { msg.textContent = 'If nothing happens, copy this code into the terminal:'; box.textContent = q.get('code'); box.hidden = false; }, 4000);
+} else { msg.textContent = 'This page is only used while connecting TikTok to Moving Parts Publisher.'; }
+</script></body></html>
